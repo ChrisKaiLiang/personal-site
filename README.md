@@ -2,6 +2,8 @@
 
 A minimal personal website built with Next.js App Router, TypeScript, Tailwind CSS, shadcn/ui, and local MDX content.
 
+Live site: [https://kai-liang.com/](https://kai-liang.com/)
+
 ## Stack
 
 - Next.js 16 App Router

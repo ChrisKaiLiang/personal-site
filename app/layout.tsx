@@ -17,11 +17,34 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.siteUrl),
+  applicationName: siteConfig.name,
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  authors: [
+    {
+      name: siteConfig.name,
+      url: siteConfig.siteUrl,
+    },
+  ],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.siteUrl,
+    siteName: siteConfig.name,
+    title: siteConfig.name,
+    description: siteConfig.description,
+  },
+  twitter: {
+    card: "summary",
+    title: siteConfig.name,
+    description: siteConfig.description,
+  },
 };
 
 export default function RootLayout({

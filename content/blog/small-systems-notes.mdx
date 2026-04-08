@@ -1,0 +1,39 @@
+export const metadata = {
+  title: "Notes on building small systems that are easy to keep",
+  summary:
+    "Small projects still benefit from strong technical judgment. The goal is not maximum abstraction, but choosing the few constraints that keep the codebase coherent over time.",
+  publishedAt: "2026-03-29",
+  tags: ["Frontend architecture", "Maintainability", "TypeScript"],
+}
+
+Not every codebase needs a big architecture. Most small product surfaces need something more disciplined than that: a few clear rules, sensible defaults, and enough consistency that the next change does not feel expensive.
+
+## The constraints I usually keep
+
+I tend to bias toward a short list of rules:
+
+- prefer **Server Components** unless interactivity is clearly needed
+- keep data structures typed and close to where they are used
+- centralize only the pieces that are truly shared
+- make component APIs obvious enough that examples are barely necessary
+
+Those rules are not sophisticated, but they remove a surprising amount of friction.
+
+## Why maintainability is usually about interfaces
+
+In frontend work, maintainability is often less about algorithmic complexity and more about interface quality:
+
+- Can another engineer tell where the content comes from?
+- Is the rendering path direct?
+- Do the component props reflect the actual UI states?
+- Are styling choices local enough to change without collateral damage?
+
+When those seams are handled well, the codebase remains flexible even if the implementation underneath is fairly ordinary.
+
+## A practical bar for MVP quality
+
+For a personal site or internal tool, I usually want the MVP to clear a simple bar:
+
+> the code should feel boring in the right places and deliberate in the places users actually notice
+
+That tends to produce systems that are easier to ship now and easier to improve later.

@@ -16,9 +16,15 @@ const components: MDXComponents = {
   h2: ({ className, ...props }: ComponentPropsWithoutRef<"h2">) => (
     <h2
       className={cn(
-        "mt-10 scroll-m-20 text-2xl font-semibold tracking-tight",
+        "mt-10 scroll-m-20 border-t border-border/70 pt-8 text-2xl font-semibold tracking-tight",
         className
       )}
+      {...props}
+    />
+  ),
+  h3: ({ className, ...props }: ComponentPropsWithoutRef<"h3">) => (
+    <h3
+      className={cn("mt-8 scroll-m-20 text-xl font-semibold tracking-tight", className)}
       {...props}
     />
   ),
@@ -27,6 +33,9 @@ const components: MDXComponents = {
       className={cn("mt-6 text-base leading-8 text-foreground/90", className)}
       {...props}
     />
+  ),
+  strong: ({ className, ...props }: ComponentPropsWithoutRef<"strong">) => (
+    <strong className={cn("font-semibold text-foreground", className)} {...props} />
   ),
   ul: ({ className, ...props }: ComponentPropsWithoutRef<"ul">) => (
     <ul className={cn("mt-6 ml-6 list-disc space-y-3", className)} {...props} />

@@ -1,6 +1,7 @@
 {
   "name": "personal-site",
   "version": "0.1.0",
+  "description": "Kai Liang's personal website built with Next.js, MDX, and Tailwind CSS.",
   "private": true,
   "scripts": {
     "dev": "next dev",

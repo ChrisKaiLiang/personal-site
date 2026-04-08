@@ -1,33 +1,39 @@
 export const metadata = {
-  title: "Initializing the site foundation",
+  title: "Shipping a small MDX site without inventing a content platform",
   summary:
-    "A first MDX post used to validate the blog route, metadata export, and baseline typography.",
+    "A few practical reasons to keep a personal-site content system explicit: local files, typed metadata, and minimal abstractions that match the real scope of the project.",
   publishedAt: "2026-04-08",
-  tags: ["Next.js", "MDX", "MVP"],
+  tags: ["Next.js", "MDX", "Content systems"],
 }
 
-# Initial notes
+One of the easiest mistakes in a personal site is solving the wrong scale of problem. It is tempting to add content discovery, frontmatter parsing, schema validation, and a few layers of helper code before there is enough content to justify them.
 
-This is a sample post for the repository initialization pass. The goal is not polished content yet, but a clean path for writing and shipping posts with local **MDX** files.
+For a small site, a local **MDX** workflow often gets you most of the benefit with much less operational weight:
 
-## What this validates
+- content lives next to the app
+- routing stays obvious
+- version control shows both copy and code changes together
+- the rendering surface is constrained enough to stay readable
 
-- Local MDX imports in the App Router
-- Route rendering through a manual registry
-- Metadata exports without YAML frontmatter
-- Basic typography for headings, lists, links, and code
+## Where the explicit approach helps
 
-## Why keep it simple
+The main win is not that the system is simpler in the abstract. The win is that another engineer can understand it quickly.
 
-For the MVP, a manual registry is easier to reason about than filesystem discovery. Each post is explicit, typed close to the content, and easy to replace later if the blog needs a more automated workflow.
+In practice, that means:
 
-You can also include inline code like `generateStaticParams` and fenced code blocks:
+- metadata lives in the file that owns the content
+- the blog registry is explicit rather than inferred
+- shared MDX components stay small and stylistic
+- route generation is tied directly to the registered posts
 
-```ts
-export const metadata = {
-  title: "Post title",
-  publishedAt: "2026-04-08",
-}
-```
+That tradeoff is often correct until one of two things changes: the volume of content increases significantly, or non-engineers need a different authoring workflow.
 
-Further refinements can happen after the homepage, projects page, and blog structure are settled.
+## What I optimize for first
+
+When I build a content-heavy surface, I usually prioritize the same things:
+
+1. clear ownership of data and rendering
+2. predictable routing and page generation
+3. enough reuse to avoid duplication, but not so much indirection that maintenance slows down
+
+This is the sort of system that starts small, stays understandable, and still leaves room to evolve later if the requirements change.
