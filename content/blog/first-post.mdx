@@ -1,0 +1,33 @@
+export const metadata = {
+  title: "Initializing the site foundation",
+  summary:
+    "A first MDX post used to validate the blog route, metadata export, and baseline typography.",
+  publishedAt: "2026-04-08",
+  tags: ["Next.js", "MDX", "MVP"],
+}
+
+# Initial notes
+
+This is a sample post for the repository initialization pass. The goal is not polished content yet, but a clean path for writing and shipping posts with local **MDX** files.
+
+## What this validates
+
+- Local MDX imports in the App Router
+- Route rendering through a manual registry
+- Metadata exports without YAML frontmatter
+- Basic typography for headings, lists, links, and code
+
+## Why keep it simple
+
+For the MVP, a manual registry is easier to reason about than filesystem discovery. Each post is explicit, typed close to the content, and easy to replace later if the blog needs a more automated workflow.
+
+You can also include inline code like `generateStaticParams` and fenced code blocks:
+
+```ts
+export const metadata = {
+  title: "Post title",
+  publishedAt: "2026-04-08",
+}
+```
+
+Further refinements can happen after the homepage, projects page, and blog structure are settled.
