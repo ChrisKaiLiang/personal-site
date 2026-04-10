@@ -4,11 +4,8 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border/80">
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-4 px-6 py-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between md:px-8">
-        <div className="space-y-1">
+        <div>
           <p className="font-medium text-foreground">{siteConfig.role}</p>
-          <p>
-            Built with Next.js, TypeScript, Tailwind CSS, shadcn/ui, and MDX.
-          </p>
         </div>
         <div className="flex flex-wrap items-center gap-4">
           {siteConfig.contactLinks.map((link) => (

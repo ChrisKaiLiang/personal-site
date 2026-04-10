@@ -11,9 +11,9 @@ export const siteConfig = {
     "Kai Liang's personal website featuring AI, data, and product-focused projects, along with technical writing on automation, analytics, and maintainable web systems.",
   navigation: [
     { label: "Home", href: "/" },
+    { label: "About Kai", href: "/about" },
     { label: "Projects", href: "/projects" },
     { label: "Blog", href: "/blog" },
-    { label: "About", href: "/about" },
   ],
   contactLinks: [
     {
