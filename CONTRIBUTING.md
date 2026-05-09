@@ -7,22 +7,53 @@ This project is deployed on Vercel. The goal of this guide is to keep the produc
 ## Core Rules
 
 - `main` is the production branch.
-- Do not develop directly on `main`.
-- Create short-lived branches from `main` for meaningful changes.
-- Open a Pull Request (PR) for meaningful changes.
-- Review the Vercel Preview before merging user-facing changes.
-- Use Conventional Commits for commit messages and PR squash titles.
+- Direct commits to `main` are allowed for normal day-to-day work on this repo.
+- Run `npm run lint` and `npm run build` before pushing.
+- Use short-lived branches only when the change is large, experimental, or easier to review separately.
+- Use Conventional Commits for commit messages.
 
-## Branch Naming
+## Recommended Workflow
 
-Use short, descriptive branch names based on the type of work:
+This repo is intentionally lightweight. It is a single-maintainer personal site, so the default workflow is:
 
-- `feat/<short-description>` for features
-- `fix/<short-description>` for bug fixes
-- `content/<short-description>` for content updates
-- `chore/<short-description>` for maintenance/dependencies
-- `refactor/<short-description>` for internal cleanup
-- `docs/<short-description>` for documentation
+1. work directly on `main`
+2. validate locally
+3. commit with a clear message
+4. push to `origin/main`
+
+Typical flow:
+
+```bash
+git checkout main
+git pull --ff-only origin main
+
+# make changes
+
+npm run lint
+npm run build
+
+git add .
+git commit -m "fix(home): resolve mobile overflow"
+git push origin main
+```
+
+## When To Use A Branch
+
+Create a short-lived branch only when it makes the work easier:
+
+- a large redesign or refactor
+- an experiment you may discard
+- a change that touches many files and may span multiple sessions
+- a change you explicitly want to review in a PR before merging
+
+Suggested branch names:
+
+- `feat/<short-description>`
+- `fix/<short-description>`
+- `content/<short-description>`
+- `chore/<short-description>`
+- `refactor/<short-description>`
+- `docs/<short-description>`
 
 Examples:
 
@@ -54,21 +85,18 @@ npm test
 npm run build
 ```
 
-If you add or modify behavior, validate it locally before opening a PR.
+If you add or modify behavior, validate it locally before pushing.
 
 ## Pull Requests
 
-Open a PR for all meaningful changes, especially:
+Pull requests are optional for this repo, not mandatory.
 
-- UI/layout updates
-- new components or pages
-- content changes that affect the live site
-- SEO/metadata updates
-- routing/redirect changes
-- analytics/tracking changes
-- dependency upgrades
-- build/config changes
-- bug fixes and behavior-affecting refactors
+Use a PR when it helps you:
+
+- compare a larger redesign against the current site
+- keep an experiment isolated from `main`
+- use Vercel Preview or GitHub review as part of the decision
+- preserve a clearer review trail for a substantial change
 
 ### PR Title
 
@@ -166,8 +194,9 @@ BREAKING CHANGE: NEXT_PUBLIC_GA_ID has been replaced by NEXT_PUBLIC_GA_MEASUREME
 
 ## Merging
 
-- Use "Squash and merge" by default to keep `main` history clean.
-- The final squash commit title should follow Conventional Commits where practical.
+If you use a PR, use "Squash and merge" by default to keep `main` history clean.
+
+The final squash commit title should follow Conventional Commits where practical.
 
 Examples:
 
@@ -177,7 +206,7 @@ Examples:
 
 ## Validation Before Merge
 
-Before merging, verify as applicable.
+Before pushing to `main` or merging a PR, verify as applicable.
 
 Local:
 
@@ -197,4 +226,3 @@ Vercel Preview:
 ## Production Safety
 
 `main` should always represent a version of the site that is safe to deploy.
-
