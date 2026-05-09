@@ -7,7 +7,7 @@ export function SiteFooter() {
         <div>
           <p className="font-medium text-foreground">{siteConfig.role}</p>
         </div>
-        <div className="flex flex-wrap items-center gap-4">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           {siteConfig.contactLinks.map((link) => (
             <a
               key={link.label}
@@ -19,7 +19,9 @@ export function SiteFooter() {
               {link.label}
             </a>
           ))}
-          <span>{new Date().getFullYear()}</span>
+          <span className="text-xs tracking-[0.08em] text-muted-foreground/70 md:border-l md:border-border/70 md:pl-4">
+            © {new Date().getFullYear()}
+          </span>
         </div>
       </div>
     </footer>

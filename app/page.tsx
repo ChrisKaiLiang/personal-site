@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import { blogPosts } from "@/content/blog";
 import { projects } from "@/content/projects";
 import { PostCard } from "@/components/site/post-card";
@@ -27,9 +27,33 @@ const focusAreas = [
   "Design systems",
 ];
 
+function GitHubLogo({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className={className}
+    >
+      <path d="M12 1.5a10.5 10.5 0 0 0-3.32 20.46c.53.1.72-.23.72-.5v-1.96c-2.94.64-3.56-1.25-3.56-1.25-.48-1.2-1.18-1.53-1.18-1.53-.96-.66.07-.65.07-.65 1.06.08 1.62 1.08 1.62 1.08.94 1.6 2.46 1.14 3.06.87.1-.68.37-1.14.67-1.4-2.35-.26-4.82-1.17-4.82-5.2 0-1.15.41-2.1 1.08-2.84-.1-.27-.47-1.36.1-2.84 0 0 .89-.28 2.9 1.08a10.15 10.15 0 0 1 5.28 0c2.01-1.36 2.9-1.08 2.9-1.08.57 1.48.2 2.57.1 2.84.67.74 1.08 1.69 1.08 2.84 0 4.04-2.48 4.93-4.85 5.19.38.32.72.96.72 1.93v2.86c0 .28.19.61.73.5A10.5 10.5 0 0 0 12 1.5Z" />
+    </svg>
+  );
+}
+
+function LinkedInLogo({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className={className}
+    >
+      <path d="M4.98 3.5A2.48 2.48 0 1 0 5 8.46 2.48 2.48 0 0 0 4.98 3.5ZM3 9.75h3.96V21H3V9.75Zm6.44 0h3.8v1.54h.05c.53-1 1.82-2.05 3.74-2.05 4 0 4.74 2.63 4.74 6.05V21h-3.96v-5.06c0-1.2-.02-2.75-1.68-2.75-1.68 0-1.94 1.3-1.94 2.66V21H9.44V9.75Z" />
+    </svg>
+  );
+}
+
 const contactIcons = {
-  GitHub: ExternalLink,
-  LinkedIn: ExternalLink,
+  GitHub: GitHubLogo,
+  LinkedIn: LinkedInLogo,
   Contact: Mail,
 } as const;
 
@@ -45,11 +69,11 @@ export default function HomePage() {
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-16 px-6 py-12 md:px-8 md:py-20">
       <section className="grid gap-6 lg:grid-cols-[1.35fr_0.85fr]">
-        <div className="rounded-[2rem] border border-border/70 bg-gradient-to-br from-card via-card to-secondary/50 p-8 shadow-sm sm:p-10">
-          <div className="max-w-3xl space-y-6">
-            <Badge variant="outline" className="h-7 px-3 text-[11px] tracking-[0.18em] uppercase">
+        <div className="min-w-0 overflow-hidden rounded-[2rem] border border-border/70 bg-gradient-to-br from-card via-card to-secondary/50 p-8 shadow-sm sm:p-10">
+          <div className="min-w-0 max-w-3xl space-y-6">
+            <p className="inline-flex max-w-full rounded-4xl border border-border bg-background/70 px-3 py-2 text-[10px] leading-4 tracking-[0.18em] uppercase text-foreground sm:w-auto sm:px-3 sm:py-1.5 sm:text-[11px] sm:leading-none">
               {siteConfig.role}
-            </Badge>
+            </p>
             <div className="space-y-4">
               <h1 className="max-w-3xl text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
                 Building clear, durable web products with strong frontend systems.
@@ -76,7 +100,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="rounded-[2rem] border border-border/70 bg-background/90 p-8 shadow-sm">
+        <div className="min-w-0 rounded-[2rem] border border-border/70 bg-background/90 p-8 shadow-sm">
           <div className="space-y-6">
             <div className="space-y-2">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
@@ -170,6 +194,8 @@ export default function HomePage() {
           <div className="flex flex-wrap gap-3">
             {siteConfig.contactLinks.map((link) => {
               const Icon = contactIcons[link.label as keyof typeof contactIcons];
+              const isBrandLogo =
+                link.label === "GitHub" || link.label === "LinkedIn";
 
               return (
                 <Button key={link.label} asChild variant="outline">
@@ -180,7 +206,7 @@ export default function HomePage() {
                       link.href.startsWith("mailto:") ? undefined : "noreferrer"
                     }
                   >
-                    <Icon />
+                    <Icon className={isBrandLogo ? "fill-current" : undefined} />
                     {link.label}
                   </a>
                 </Button>

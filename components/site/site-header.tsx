@@ -4,7 +4,7 @@ import { siteConfig } from "@/lib/site";
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-20 border-b border-border/80 bg-background/92 backdrop-blur supports-[backdrop-filter]:bg-background/82">
-      <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-6 px-6 py-4 md:px-8">
+      <div className="mx-auto flex w-full max-w-5xl flex-col items-start gap-3 px-6 py-4 md:px-8 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
         <div className="flex min-w-0 items-center gap-3">
           <Link href="/" className="shrink-0 text-sm font-semibold tracking-tight">
             {siteConfig.name}
@@ -13,7 +13,10 @@ export function SiteHeader() {
             {siteConfig.role}
           </span>
         </div>
-        <nav aria-label="Primary" className="flex items-center gap-5 text-sm">
+        <nav
+          aria-label="Primary"
+          className="flex w-full flex-wrap items-center gap-x-5 gap-y-2 text-sm sm:w-auto sm:flex-nowrap"
+        >
           {siteConfig.navigation.map((item) => (
             <Link
               key={item.href}
